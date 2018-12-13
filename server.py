@@ -12,6 +12,12 @@ def listRestaurants():
         restaurants=session.query(Restaurant).all())
 
 
+@app.route('/restaurants/JSON')
+def listRestaurantsJSON():
+    restaurants = session.query(Restaurant).all()
+    return jsonify([restaurant.serialize for restaurant in restaurants])
+
+
 @app.route('/restaurants/new', methods=['GET', 'POST'])
 def addRestaurant():
     if request.method == 'POST':
@@ -51,6 +57,12 @@ def deleteRestaurant(restaurant_id):
 def listMenuItems(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     return render_template('listMenuItems.html', restaurant=restaurant)
+
+
+@app.route('/restaurants/<int:restaurant_id>/JSON')
+def listMenuItemsJSON(restaurant_id):
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    return jsonify([menuitem.serialize for menuitem in restaurant.menuitems])
 
 
 @app.route('/restaurants/<int:restaurant_id>/menu/add', methods=['GET', 'POST'])
@@ -98,6 +110,12 @@ def editMenuItem(restaurant_id, menu_id):
         flash("Menu-Item edited")
         return redirect(url_for('listMenuItems', restaurant_id=restaurant_id))
     return render_template('editMenuItem.html', menuitem=menuitem)
+
+
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def menuItemJSON(restaurant_id, menu_id):
+    menuitem = session.query(MenuItem).filter_by(id=menu_id).one()
+    return jsonify(menuitem.serialize)
 
 
 if __name__ == '__main__':

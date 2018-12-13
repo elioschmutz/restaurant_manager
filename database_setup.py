@@ -16,6 +16,13 @@ class Restaurant(Base):
     name = Column(String(250), nullable=False)
     menuitems = relationship("MenuItem", backref="restaurant")
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }
+
 
 class MenuItem(Base):
     __tablename__ = 'menu_item'
