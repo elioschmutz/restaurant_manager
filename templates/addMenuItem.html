@@ -7,29 +7,26 @@
 {% block content %}
 <form action="{{url_for('addMenuItem', restaurant_id=restaurant.id )}}" method = 'POST' id="add-menu-item-form">
 
-<p>
+
 <label for="name">Name</label>
-<input type='text' size='30' name='name'></input>
-</p>
-<p>
+<input type='text' size='30' name='name' required></input>
+
 <label for="description">Description</label>
 <input type='text' size='30' name='description'></input>
-</p>
-<p>
+
 <label for="price">Price</label>
 <input type='text' size='30' name='price'>
-</p>
-<p>
-<label for="course">Course</label>
-<select name="course" form="add-menu-item-form">
-  <option value="Starter">Starter</option>
-  <option value="Main">Main</option>
-  <option value="Dessert">Dessert</option>
-</select>
-</p>
 
-<input type='submit' value='Create'>
-<a href="{{url_for('listMenuItems', restaurant_id=restaurant.id)}}">Cancel</a>
+<label for="course">Course</label>
+<select name="course"  form="add-menu-item-form">
+    <option value="Starter">Starter</option>
+    <option value="Main">Main</option>
+    <option value="Dessert">Dessert</option>
+    <option value="Beverage">Beverage</option>
+</select>
+
+<input class="waves-effect waves-light btn" type='submit' value='Create'>
+<a  class="waves-effect waves-light btn btn-fla" href="{{url_for('listMenuItems', restaurant_id=restaurant.id)}}">Cancel</a>
 </form>
 
 {% endblock %}

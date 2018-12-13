@@ -2,19 +2,40 @@
 <html>
   <head>
     {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+    <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
     <title>{% block title %}{% endblock %} - Restaurant Menu Manager</title>
     {% endblock %}
   </head>
   <body>
-  <section class="content">
-    <header>
-      {% block header %}{% endblock %}
-    </header>
+    <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="{{url_for('listRestaurants')}}" class="brand-logo">Restaurant Menu Manager</a>
+      <ul class="right hide-on-med-and-down">
+        <!-- <li><a href="#">Restaurant</a></li> -->
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Restaurants</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="container">
     {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
+    <div class="row section">
+      <div class="col">
+      <span class="new badge" data-badge-caption="">{{ message }}</span>
+        </div>
+    </div>
     {% endfor %}
+
+    {% block header %}{% endblock %}
     {% block content %}{% endblock %}
-  </section>
+  </div>
   </body>
 </html>
