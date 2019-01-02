@@ -12,6 +12,7 @@ Warning: This is just an example. There is no input/output sanitize or validatio
 <!-- MarkdownTOC levels="1" autolink=true autoanchor=false bracket="round" -->
 
 - [Installation](#installation)
+- [Example](#example)
 
 <!-- /MarkdownTOC -->
 
@@ -34,3 +35,7 @@ Then start your flask-application server:
 ```sh
 python server.py
 ```
+
+## Example
+
+![Example](./docs/assets/example.gif)
